@@ -103,14 +103,16 @@ public class LibrarianService {
 		return false;
 	}
 
-	public boolean issueRequestedBookById(int bookid, int studid) {
+	public boolean issueRequestedBookById(int bookid, int studid, int libid) {
 		Book book = bookDao.getBookById(bookid);
+		Librarian librarian = librarianDao.getLibrarianById(libid);
 		Student student = studentDao.getStudentById(studid);
 
-		if (book != null && student != null && book.getStatus().equalsIgnoreCase("InRequest")
+		if (book != null && librarian != null && book.getStatus().equalsIgnoreCase("InRequest")
 				&& studid == book.getStudent().getId()) {
 			book.setStatus("Issued");
-			System.out.println("Issued Requested Book to the Student who Requested it.");
+			System.out.println("Issued Requested Book to " + student.getName());
+			book.setLibrarian(librarian);
 			return bookDao.requestBook(book);
 		} else {
 			System.out.println("Book is InRequest by other Student");

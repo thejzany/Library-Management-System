@@ -7,7 +7,7 @@ public class AddBook {
 	public static void main(String[] args) {
 
 		Book book = new Book();
-		book.setName("Book");
+		book.setName("Book10");
 		book.setStatus("Available");
 
 		LibrarianService librarianService = new LibrarianService();

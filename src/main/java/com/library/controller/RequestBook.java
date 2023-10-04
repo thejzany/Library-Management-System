@@ -4,10 +4,10 @@ import com.library.service.StudentService;
 
 public class RequestBook {
 
-		public static void main(String[] args) {
-			
-			StudentService studentService= new StudentService();
-			studentService.requestBook(1, 2, 1);
-		}
+	public static void main(String[] args) {
 
+		StudentService studentService = new StudentService();
+		studentService.requestBook(5, 4);
 	}
+
+}

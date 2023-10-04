@@ -52,17 +52,14 @@ public class StudentService {
 		return studentDao.getAllStudents();
 	}
 
-	public boolean requestBook(int bookid, int studid, int libid) {
+	public boolean requestBook(int bookid, int studid) {
 
 		Book book = bookDao.getBookById(bookid);
 		Student student = studentDao.getStudentById(studid);
-		Librarian librarian = librarianDao.getLibrarianById(libid);
 
-		if (librarian != null && book != null && student != null && book.getStatus().equalsIgnoreCase("Available")
-				&& librarian.getStatus().equalsIgnoreCase("Approved")) {
+		if (book != null && student != null && book.getStatus().equalsIgnoreCase("Available")) {
 			book.setStatus("InRequest");
 			book.setStudent(student);
-			book.setLibrarian(librarian);
 			return bookDao.requestBook(book);
 		} else {
 			System.out.println("Book Unavailable for Requesting");
